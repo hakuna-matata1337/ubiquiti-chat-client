@@ -1,0 +1,2 @@
+export const SET_NICKNAME = 'SET_NICKNAME';
+export const UNSET_NICKNAME = 'UNSET_NICKNAME';
