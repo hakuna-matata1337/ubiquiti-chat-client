@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { setNickname } from 'redux/actions/User';
-
-const Login = ({ nickname, setNickname }) => {
+const Login = ({ socket, nickname }) => {
   const [name, setName] = useState('');
   const history = useHistory();
 
@@ -15,9 +13,7 @@ const Login = ({ nickname, setNickname }) => {
     }
   }, [nickname, history]);
 
-  const handleSubmit = () => {
-    setNickname(name);
-  };
+  const setNickname = () => socket.emit('set-nickname', name);
 
   return (
     <main className='login'>
@@ -30,7 +26,7 @@ const Login = ({ nickname, setNickname }) => {
           style={{ width: 200 }}
           onChange={e => setName(e.target.value)}
         />
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={setNickname}>Submit</button>
       </div>
     </main>
   );
@@ -38,11 +34,12 @@ const Login = ({ nickname, setNickname }) => {
 
 Login.propTypes = {
   nickname: PropTypes.string,
-  setNickname: PropTypes.func.isRequired,
+  socket: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
-  nickname: state.User.nickname,
+  nickname: state.nickname,
+  socket: state.socket,
 });
 
-export default connect(mapStateToProps, { setNickname })(Login);
+export default connect(mapStateToProps)(Login);

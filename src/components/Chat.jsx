@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { disconnect } from 'redux/actions/User';
-
-const Chat = ({ nickname, disconnect }) => {
+const Chat = ({ nickname, socket, messages }) => {
   const history = useHistory();
 
   useEffect(() => {
@@ -17,19 +15,25 @@ const Chat = ({ nickname, disconnect }) => {
   return (
     <main className='chat'>
       <div>
-        chat <button onClick={() => disconnect(nickname)}>Disconnect</button>
+        chat{' '}
+        <button onClick={() => socket.emit('disconnect', nickname)}>
+          Disconnect
+        </button>
       </div>
     </main>
   );
 };
 
 Chat.propTypes = {
-  nickname: PropTypes.string.isRequired,
-  disconnect: PropTypes.func.isRequired,
+  nickname: PropTypes.string,
+  socket: PropTypes.object,
+  messages: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
-  nickname: state.User.nickname,
+  nickname: state.nickname,
+  socket: state.socket,
+  messages: state.messages,
 });
 
-export default connect(mapStateToProps, { disconnect })(Chat);
+export default connect(mapStateToProps)(Chat);

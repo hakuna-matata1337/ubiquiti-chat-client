@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
-import User from 'redux/reducers/User';
+import socket from 'redux/reducers/socket';
+import nickname from 'redux/reducers/nickname';
+import messages from 'redux/reducers/messages';
 
 export default combineReducers({
-  User,
+  socket,
+  nickname,
+  messages,
 });
