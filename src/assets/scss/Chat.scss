@@ -122,6 +122,10 @@ main.chat {
 
       & .title {
         font-size: 20px;
+
+        & .name {
+          color: #80a3d1;
+        }
       }
 
       & .online-time {

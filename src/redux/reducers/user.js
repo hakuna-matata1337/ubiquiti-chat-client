@@ -17,6 +17,7 @@ export default (state = initialState, { type, payload }) => {
       };
     case DISCONNECT_USER:
       return {
+        ...state,
         nickname: null,
         connected: null,
         session: null,

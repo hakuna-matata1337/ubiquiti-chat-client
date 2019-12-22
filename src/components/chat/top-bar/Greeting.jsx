@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 const Greeting = ({ user: { nickname, connected } }) => {
   return (
     <div className='greeting'>
-      <div className='title'>Hey {nickname}!</div>
+      <div className='title'>
+        You are visible as <span className='name'>{nickname}</span>
+      </div>
       <div className='online-time'>
         You have been online for{' '}
         <span className='time'>

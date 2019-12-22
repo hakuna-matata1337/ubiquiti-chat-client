@@ -6,5 +6,7 @@ import combinedReducers from 'redux/reducers';
 export default createStore(
   combinedReducers,
   {},
-  composeWithDevTools(applyMiddleware(thunk)),
+  process.env.NODE_ENV === 'development'
+    ? composeWithDevTools(applyMiddleware(thunk))
+    : applyMiddleware(thunk),
 );

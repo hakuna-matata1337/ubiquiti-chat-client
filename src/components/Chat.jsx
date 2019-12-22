@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import TopBar from './chat/top-bar/';
 import UsersList from './chat/users-list/';
 import ChatBody from './chat/chat-body/';
-import Footer from 'components/Footer';
 
 const Chat = ({ nickname }) => {
   const history = useHistory();
@@ -23,7 +22,6 @@ const Chat = ({ nickname }) => {
       <TopBar />
       <UsersList />
       <ChatBody />
-      <Footer />
     </main>
   );
 };
