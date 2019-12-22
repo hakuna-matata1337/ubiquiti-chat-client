@@ -1,0 +1,40 @@
+main.login {
+  width: 100%;
+  height: 100%;
+  background-color: #181818;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .container {
+    width: 350px;
+    padding: 20px;
+    background-color: #2e2e2e;
+    border: 1px solid #1b1b1b;
+    box-shadow: 0 0 5px #0c0c0c;
+
+    & .title {
+      text-align: center;
+      padding-bottom: 20px;
+      font-size: 22px;
+    }
+
+    & form.user-input {
+      display: flex;
+
+      & input {
+        flex: 3;
+        margin-right: 10px;
+      }
+
+      & button {
+        flex: 1;
+      }
+
+      & input,
+      & button {
+        font-size: 18px;
+      }
+    }
+  }
+}

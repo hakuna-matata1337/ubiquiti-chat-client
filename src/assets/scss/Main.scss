@@ -1,11 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #000000;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #ffffff;
+  font-size: 18px;
 }
 
 * {
@@ -18,6 +15,7 @@ button {
   outline: none;
   border: 2px solid #cfd1d4;
   border-radius: 4px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 button {
@@ -32,13 +30,4 @@ button {
     background-color: #1269c5;
     border-color: #1269c5;
   }
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  color: #000000;
 }

@@ -1,18 +1,44 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from 'redux/store';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import ReactNotifications from 'react-notifications-component';
+import Login from 'components/Login';
+import Chat from 'components/Chat';
 
-import Main from 'components/Main';
+// Actions
+import { connection } from 'redux/actions/socket';
 
-const App = () => (
-  <Provider store={store}>
+const App = ({ socket, connection }) => {
+  useEffect(() => {
+    if (!socket) {
+      connection();
+    }
+  }, [socket, connection]);
+
+  return (
     <Router>
-      <Main />
+      <div className='App'>
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route exact path='/chat' component={Chat} />
+        </Switch>
+      </div>
       <ReactNotifications />
     </Router>
-  </Provider>
-);
+  );
+};
 
-export default App;
+App.propTypes = {
+  socket: PropTypes.object,
+  connection: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  socket: state.socket,
+});
+
+export default connect(mapStateToProps, {
+  connection,
+})(App);
