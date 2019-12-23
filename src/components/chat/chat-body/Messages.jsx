@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -6,6 +6,14 @@ import PropTypes from 'prop-types';
 import MessageCard from './MessageCard';
 
 const Messages = ({ messages }) => {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
   return (
     <div className='content'>
       {messages.length > 0 ? (
@@ -15,6 +23,7 @@ const Messages = ({ messages }) => {
       ) : (
         <div className='no-messages'>No messages</div>
       )}
+      <div ref={messagesEndRef} />
     </div>
   );
 };

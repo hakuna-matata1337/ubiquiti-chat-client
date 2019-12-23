@@ -21,11 +21,19 @@ const Disconnect = ({ socket, session }) => {
     return () => socket && socket.off('session update');
   }, [socket]);
 
+  const formatTime = sec => {
+    return sec <= 60
+      ? `${sec} sec`
+      : sec <= 3600
+      ? `${Math.ceil(sec / 60)} min`
+      : `${(sec / 60 / 60).toFixed(1)} hours`;
+  };
+
   return (
     <div className='disconnect' onClick={() => socket.emit('disconnect user')}>
       <div className='title'>disconnect</div>
       <div className='session-expire'>
-        inactivity will result in disconnect ({timer} sec)
+        inactivity will result in disconnect ({formatTime(timer)})
       </div>
     </div>
   );

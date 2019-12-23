@@ -1,12 +1,12 @@
 import React from 'react';
 
 // Children Components
-import Circle from './Circle';
+import Total from './Total';
 import UsersList from './UsersList';
 
 export default () => (
   <div className='users-content'>
-    <Circle />
+    <Total />
     <UsersList />
   </div>
 );

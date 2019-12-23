@@ -8,7 +8,7 @@ const MessageCard = ({ message, nickname }) => {
   return (
     <div className='message'>
       <div className={message.nickname !== nickname ? 'left' : 'right'}>
-        {message.nickname !== nickname && (
+        {message.nickname !== nickname ? (
           <>
             <AccountCircle />
             <div className='user'>
@@ -17,9 +17,12 @@ const MessageCard = ({ message, nickname }) => {
                 <Moment fromNow>{new Date(message.time)}</Moment>
               </div>
             </div>
+            <div className='text'>{message.text}</div>
+            <div className='spacer'></div>
           </>
+        ) : (
+          <div className='text'>{message.text}</div>
         )}
-        <div className='text'>{message.text}</div>
       </div>
     </div>
   );

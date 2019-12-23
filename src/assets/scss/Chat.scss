@@ -12,7 +12,7 @@ main.chat {
 
   & .users-content {
     grid-area: users-list;
-    border-right: 2px solid #101010;
+    border-right: 5px solid #272727;
     overflow-y: scroll;
     -ms-overflow-style: none;
 
@@ -20,12 +20,12 @@ main.chat {
       display: none;
     }
 
-    & .circle-count {
+    & .total-count {
       width: 100px;
       height: 100px;
-      border-radius: 20px;
+      border-radius: 10px;
       background-color: #0e2f49;
-      border: 3px solid #2e638f;
+      border: 1px solid #2e638f;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -42,10 +42,6 @@ main.chat {
 
       & .title {
         font-size: 14px;
-      }
-
-      &:hover {
-        transform: scale(1.1);
       }
     }
 
@@ -109,7 +105,7 @@ main.chat {
 
   & .top-bar {
     grid-area: top-bar;
-    border-bottom: 2px solid #101010;
+    border-bottom: 5px solid #272727;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -166,19 +162,18 @@ main.chat {
 
   & .chat-body {
     grid-area: chat-body;
+    background-color: #080b0d;
     display: grid;
     grid-template-rows: 1fr auto;
+    overflow-y: auto;
+
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     & .content {
-      background-color: #000000;
-      overflow-y: scroll;
-      padding: 0 5px 0 0;
-      -ms-overflow-style: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
+      padding: 5px;
       & .no-messages {
         padding: 10px;
       }
@@ -189,11 +184,13 @@ main.chat {
 
         & .left {
           float: left;
-          max-width: 80%;
           display: grid;
           grid-template-areas:
-            'icon   user'
-            'icon   text';
+            'icon   user  user'
+            'icon   text  spacer';
+          grid-template-columns: auto auto 1fr;
+          overflow: hidden;
+          max-width: 90%;
 
           & svg {
             display: block;
@@ -225,15 +222,27 @@ main.chat {
             background-color: #1b1b1d;
             padding: 10px 15px;
             border-radius: 20px;
+            overflow: hidden;
+            word-wrap: break-word;
+          }
+
+          & .spacer {
+            grid-area: spacer;
           }
         }
 
         & .right {
+          overflow: hidden;
           float: right;
-          background-color: #153e8b;
           max-width: 90%;
-          padding: 10px 15px;
-          border-radius: 20px;
+
+          & .text {
+            background-color: #153e8b;
+            padding: 10px 15px;
+            border-radius: 20px;
+            overflow: hidden;
+            word-wrap: break-word;
+          }
         }
       }
     }
@@ -241,7 +250,6 @@ main.chat {
     & form.controls {
       display: flex;
       padding: 15px;
-      background-color: #000000;
 
       & input.message {
         flex: 9;
